@@ -7,10 +7,8 @@ import sys
 import time
 import pygame
 import usb.core
-from Tkinter import *
-from PIL import Image, ImageTk
 
-class launchControl(Frame):
+class launchControl():
    def __init__(self, target):
       self.target = target  
       self.xPosition = 0
@@ -23,8 +21,6 @@ class launchControl(Frame):
       if self.dev.is_kernel_driver_active(0) is True:
          self.dev.detach_kernel_driver(0)
       self.dev.set_configuration()
-
-      Frame.__init__(self)
 
       print('Try to shoot: ', self.target)
 

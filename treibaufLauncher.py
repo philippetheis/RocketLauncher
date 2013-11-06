@@ -9,8 +9,7 @@ import sys
 import time
 import pygame
 import usb.core
-from Tkinter import *
-from PIL import Image, ImageTk
+import subprocess
 
 #imports for email
 import imaplib
@@ -30,7 +29,7 @@ PASSWORD = "jenkinsrocket" 			              # mail password
 
 #################################################
 # class launchControl with all needed variables 
-class launchControl(Frame):
+class launchControl():
    def __init__(self):  
       self.xPosition = 0
       self.yPosition = 0
@@ -43,7 +42,7 @@ class launchControl(Frame):
          self.dev.detach_kernel_driver(0)
       self.dev.set_configuration()
 
-      Frame.__init__(self)
+      subprocess.call( "enablePin7", shell=True ) 
 
 #################################################
 #################################################
@@ -59,9 +58,13 @@ class launchControl(Frame):
 
               readFileAndGetCoordinates(self,targetList,"targets.dat")
 
+              subprocess.call( "turnPin7on", shell=True )
+
               for i in range(0,len(self.xTargets)):
                   moveTo(self,self.xTargets[i],self.yTargets[i])
                   shoot(self)
+
+              subprocess.call( "turnPin7off", shell=True )
 
               reset(self)
 
@@ -104,7 +107,7 @@ def moveTo(self,xTarget,yTarget):
 # shoot function, triggers the rocket launcher
 def shoot(self):
     self.dev.ctrl_transfer(0x21,0x09,0,0,[0x02,0x10,0x00,0x00,0x00,0x00,0x00,0x00]) # shoot
-    time.sleep(3)
+    time.sleep(4)
 # end shoot function
 #################################################
 
