@@ -9,7 +9,7 @@ import sys
 import time
 import pygame
 import usb.core
-import subprocess
+import RPi.GPIO as GPIO
 
 #imports for email
 import imaplib
@@ -27,6 +27,9 @@ PORT = 993                                        # mail server port
 USERNAME = "treibaufrocketlauncher@gmail.com"     # mail adress
 PASSWORD = "jenkinsrocket" 			              # mail password	
 
+# initialize the GPIO
+GPIO.setmode(GPIO.BOARD)
+
 #################################################
 # class launchControl with all needed variables 
 class launchControl():
@@ -42,7 +45,7 @@ class launchControl():
          self.dev.detach_kernel_driver(0)
       self.dev.set_configuration()
 
-      subprocess.call( "enablePin7", shell=True ) 
+      GPIO.setup(7,GPIO.OUT)
 
 #################################################
 #################################################
@@ -58,13 +61,13 @@ class launchControl():
 
               readFileAndGetCoordinates(self,targetList,"targets.dat")
 
-              subprocess.call( "turnPin7on", shell=True )
+              GPIO.output(7,True)
 
               for i in range(0,len(self.xTargets)):
                   moveTo(self,self.xTargets[i],self.yTargets[i])
                   shoot(self)
 
-              subprocess.call( "turnPin7off", shell=True )
+              GPIO.output(7,False)
 
               reset(self)
 
