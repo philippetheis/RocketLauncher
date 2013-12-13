@@ -24,8 +24,8 @@ from email import Encoders
 
 MAILSERVER = "imap.gmail.com"                     # mail server
 PORT = 993                                        # mail server port
-USERNAME = "treibaufrocketlauncher@gmail.com"     # mail adress
-PASSWORD = "jenkinsrocket" 			              # mail password	
+USERNAME = "**********************@gmail.com"     # mail adress
+PASSWORD = "*************" 			              # mail password	
 
 # initialize the GPIO
 GPIO.setmode(GPIO.BOARD)
