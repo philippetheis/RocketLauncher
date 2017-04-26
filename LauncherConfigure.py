@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# little script to use the treibauf rocket launcher
+# little script to use the rocket launcher
 
 import os
 import sys
