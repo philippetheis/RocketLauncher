@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-# little script to use the treibauf rocket launcher
-# send an email to rocketlauncher@treibauf.ch and all the targets (e.g. hummel@treibauf.ch)
+# little script to use the rocket launcher
+# send an email to rocketlauncher@xxxx.ch and all the targets (e.g. position1@xxxx.ch)
 # mission will shortly be accomplished
 
 import os
